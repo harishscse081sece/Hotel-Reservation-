@@ -30,3 +30,14 @@ class Room {
         this.price = price;
         this.isAvailable = true;
     }
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void bookRoom() {
+        isAvailable = false;
+    }
+
+    public void releaseRoom() {
+        isAvailable = true;
+    }
