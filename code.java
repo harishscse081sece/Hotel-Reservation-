@@ -54,3 +54,17 @@ class Room {
         return price;
     }
 }
+class Reservation {
+    private int reservationId;
+    private Customer customer;
+    private Room room;
+    private String checkInDate;
+    private String checkOutDate;
+
+    public Reservation(int reservationId, Customer customer, Room room, String checkInDate, String checkOutDate) {
+        this.reservationId = reservationId;
+        this.customer = customer;
+        this.room = room;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+    }
