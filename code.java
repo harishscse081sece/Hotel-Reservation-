@@ -17,3 +17,16 @@ class Customer {
         return name;
     }
 }
+// Room Class 
+class Room {
+    private int roomNumber;
+    private String type;
+    private double price;
+    private boolean isAvailable;
+
+    public Room(int roomNumber, String type, double price) {
+        this.roomNumber = roomNumber;
+        this.type = type;
+        this.price = price;
+        this.isAvailable = true;
+    }
