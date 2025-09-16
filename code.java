@@ -54,6 +54,7 @@ class Room {
         return price;
     }
 }
+// Reservation Class
 class Reservation {
     private int reservationId;
     private Customer customer;
@@ -68,3 +69,23 @@ class Reservation {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
+        public double calculateCost() {
+        return room.getPrice(); 
+    }
+
+    public int getReservationId() {
+        return reservationId;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public String toString() {
+        return "Reservation ID: " + reservationId +
+                ", Customer: " + customer.getName() +
+                ", Room: " + room.getDetails() +
+                ", Check-In: " + checkInDate +
+                ", Check-Out: " + checkOutDate;
+    }
+}
