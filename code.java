@@ -41,3 +41,16 @@ class Room {
     public void releaseRoom() {
         isAvailable = true;
     }
+    
+    public String getDetails() {
+        return "Room " + roomNumber + " (" + type + ") - ₹" + price + " Available: " + isAvailable;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
