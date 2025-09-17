@@ -115,3 +115,16 @@ class HotelManagement {
             System.out.println("No rooms available at the moment.");
         }
     }
+     public void bookRoom(Customer customer, int roomNumber, String checkInDate, String checkOutDate) {
+        for (Room room : rooms) {
+            if (room.isAvailable() && room.getRoomNumber() == roomNumber) {
+                room.bookRoom();
+                int reservationId = reservations.size() + 1;
+                Reservation reservation = new Reservation(reservationId, customer, room, checkInDate, checkOutDate);
+                reservations.add(reservation);
+                System.out.println("Booking Successful! " + reservation);
+                return;
+            }
+        }
+        System.out.println(" Room not available.");
+    }
