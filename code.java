@@ -128,3 +128,17 @@ class HotelManagement {
         }
         System.out.println(" Room not available.");
     }
+     public void cancelRoom(int reservationId) {
+        Iterator<Reservation> iterator = reservations.iterator();
+        while (iterator.hasNext()) {
+            Reservation reservation = iterator.next();
+            if (reservation.getReservationId() == reservationId) {
+                reservation.getRoom().releaseRoom();
+                iterator.remove();
+                System.out.println("Reservation Cancelled: " + reservationId);
+                return;
+            }
+        }
+        System.out.println("Reservation not found.");
+    }
+}
