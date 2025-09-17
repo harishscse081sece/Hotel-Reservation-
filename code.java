@@ -142,3 +142,8 @@ class HotelManagement {
         System.out.println("Reservation not found.");
     }
 }
+// -------------------- Main Class --------------------
+public class HotelReservationSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        HotelManagement hotel = new HotelManagement();
