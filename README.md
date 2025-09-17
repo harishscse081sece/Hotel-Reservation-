@@ -3,7 +3,7 @@ Hotel Reservation System :
 Project Overview
  The Hotel Reservation System is a Java console-based application with SQL database integration.  
  It allows users to check room availability, book rooms, cancel reservations, and manage customer details efficiently.  
- This project follows Object-Oriented Programming (OOP) principles like Encapsulation, Abstraction, Inheritance, and Polymorphism for a     modular design.
+ This project follows Object-Oriented Programming (OOP) principles like Encapsulation, Abstraction, Inheritance, and Polymorphism for a  modular design.
 
 Features
  Add, update, and manage customer details  
@@ -14,9 +14,9 @@ Features
  Organized database storage using SQL  
 
 Tech Stack
- Language:** Java (Console-based)
- Database:** MySQL / PostgreSQL (choose one)
- Paradigm:Object-Oriented Programming
+ Language: Java (Console-based)
+ Database: MySQL 
+ Paradigm: Object-Oriented Programming
  Tools: JDBC (Java Database Connectivity)
 
 
