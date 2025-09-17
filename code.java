@@ -98,3 +98,20 @@ class HotelManagement {
         rooms = new ArrayList<>();
         reservations = new ArrayList<>();
     }
+    public void addRoom(Room room) {
+        rooms.add(room);
+    }
+
+    public void showAvailableRooms() {
+        System.out.println("\nAvailable Rooms:");
+        boolean found = false;
+        for (Room room : rooms) {
+            if (room.isAvailable()) {
+                System.out.println(room.getDetails());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No rooms available at the moment.");
+        }
+    }
