@@ -89,3 +89,12 @@ class Reservation {
                 ", Check-Out: " + checkOutDate;
     }
 }
+// Hotel Management Class 
+class HotelManagement {
+    private List<Room> rooms;
+    private List<Reservation> reservations;
+
+    public HotelManagement() {
+        rooms = new ArrayList<>();
+        reservations = new ArrayList<>();
+    }
