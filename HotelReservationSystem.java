@@ -147,3 +147,9 @@ public class HotelReservationSystem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         HotelManagement hotel = new HotelManagement();
+
+        hotel.addRoom(new Room(101, "Single", 1500));
+        hotel.addRoom(new Room(102, "Double", 2500));
+        hotel.addRoom(new Room(103, "Suite", 4000));
+        
+        Customer customer = new Customer(1, "Harish", "1234567899", "harish.s2024cse@sece.ac.in");
