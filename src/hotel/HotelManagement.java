@@ -1,8 +1,8 @@
 package hotel;
 
 import java.util.*;
-
-public class HotelManagement {
+ 
+class HotelManagement {
     private List<Room> rooms;
     private List<Reservation> reservations;
 
@@ -30,30 +30,48 @@ public class HotelManagement {
     }
 
     public void bookRoom(Customer customer, int roomNumber, String checkInDate, String checkOutDate) {
-        for (Room room : rooms) {
-            if (room.isAvailable() && room.getRoomNumber() == roomNumber) {
-                room.bookRoom();
-                int reservationId = reservations.size() + 1;
-                Reservation reservation = new Reservation(reservationId, customer, room, checkInDate, checkOutDate);
-                reservations.add(reservation);
-                System.out.println("Booking Successful! " + reservation);
-                return;
-            }
+        Room roomToBook = getRoomByNumber(roomNumber);
+        if (roomToBook != null && roomToBook.isAvailable()) {
+            roomToBook.bookRoom();
+            int reservationId = reservations.size() + 1;
+            Reservation reservation = new Reservation(reservationId, customer, roomToBook, checkInDate, checkOutDate);
+            reservations.add(reservation);
+            System.out.println("Booking Successful! " + reservation);
+        } else {
+            System.out.println("Room " + roomNumber + " is not available or does not exist.");
         }
-        System.out.println("Room not available.");
     }
 
     public void cancelRoom(int reservationId) {
-        Iterator<Reservation> iterator = reservations.iterator();
-        while (iterator.hasNext()) {
-            Reservation reservation = iterator.next();
-            if (reservation.getReservationId() == reservationId) {
-                reservation.getRoom().releaseRoom();
-                iterator.remove();
-                System.out.println("Reservation Cancelled: " + reservationId);
-                return;
+        Reservation reservationToCancel = findReservation(reservationId);
+        if (reservationToCancel != null) {
+            reservationToCancel.getRoom().releaseRoom();
+            reservations.remove(reservationToCancel);
+            System.out.println("Reservation Cancelled: " + reservationId);
+        } else {
+            System.out.println("Reservation not found.");
+        }
+    }
+
+    
+     
+     
+    private Room getRoomByNumber(int roomNumber) {
+        for (Room room : rooms) {
+            if (room.getRoomNumber() == roomNumber) {
+                return room;
             }
         }
-        System.out.println("Reservation not found.");
+        return null;
+    }
+
+  
+    private Reservation findReservation(int reservationId) {
+        for (Reservation reservation : reservations) {
+            if (reservation.getReservationId() == reservationId) {
+                return reservation;
+            }
+        }
+        return null;
     }
 }
