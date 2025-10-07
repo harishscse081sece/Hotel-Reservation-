@@ -1,5 +1,5 @@
 package hotel;
-
+import java.util.* ;
 class Guest extends User {
     public Guest(String username) {
         super(username, "Guest");

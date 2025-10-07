@@ -1,6 +1,7 @@
 package hotel;
+import java.util.* ;
 
-public class Customer {
+class Customer {
     private int customerId;
     private String name;
     private String phone;

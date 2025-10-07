@@ -53,9 +53,6 @@ class HotelManagement {
         }
     }
 
-    
-     
-     
     private Room getRoomByNumber(int roomNumber) {
         for (Room room : rooms) {
             if (room.getRoomNumber() == roomNumber) {
@@ -65,7 +62,6 @@ class HotelManagement {
         return null;
     }
 
-  
     private Reservation findReservation(int reservationId) {
         for (Reservation reservation : reservations) {
             if (reservation.getReservationId() == reservationId) {

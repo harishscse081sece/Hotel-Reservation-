@@ -1,6 +1,7 @@
 package hotel;
 
-public class Reservation {
+import java.util.* ;
+class Reservation {
     private int reservationId;
     private Customer customer;
     private Room room;

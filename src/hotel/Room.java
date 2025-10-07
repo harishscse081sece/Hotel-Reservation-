@@ -1,6 +1,7 @@
 package hotel;
 
-public class Room {
+import java.util.* ;
+class Room {
     private int roomNumber;
     private String type;
     private double price;
