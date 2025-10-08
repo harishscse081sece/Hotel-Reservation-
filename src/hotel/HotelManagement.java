@@ -1,73 +1,65 @@
 package hotel;
 
 import java.util.*;
- 
-class HotelManagement {
-    private List<Room> rooms;
-    private List<Reservation> reservations;
 
-    public HotelManagement() {
-        rooms = new ArrayList<>();
-        reservations = new ArrayList<>();
-    }
+public class HotelManagement {
+    List<Room> rooms = new ArrayList<>();
+    List<Reservation> reservations = new ArrayList<>();
 
     public void addRoom(Room room) {
         rooms.add(room);
+        System.out.println("Room added successfully!");
+    }
+
+    public void showAllRooms() {
+        System.out.println("\n----- All Rooms -----");
+        for (Room r : rooms) {
+            r.showRoom();
+        }
     }
 
     public void showAvailableRooms() {
-        System.out.println("\nAvailable Rooms:");
-        boolean found = false;
-        for (Room room : rooms) {
-            if (room.isAvailable()) {
-                System.out.println(room.getDetails());
-                found = true;
+        System.out.println("\n----- Available Rooms -----");
+        for (Room r : rooms) {
+            if (!r.isOccupied()) {
+                r.showRoom();
             }
         }
-        if (!found) {
-            System.out.println("No rooms available at the moment.");
+    }
+
+    public void showAllReservations() {
+        System.out.println("\n----- All Reservations -----");
+        for (Reservation res : reservations) {
+            res.showReservation();
         }
     }
 
-    public void bookRoom(Customer customer, int roomNumber, String checkInDate, String checkOutDate) {
-        Room roomToBook = getRoomByNumber(roomNumber);
-        if (roomToBook != null && roomToBook.isAvailable()) {
-            roomToBook.bookRoom();
-            int reservationId = reservations.size() + 1;
-            Reservation reservation = new Reservation(reservationId, customer, roomToBook, checkInDate, checkOutDate);
-            reservations.add(reservation);
-            System.out.println("Booking Successful! " + reservation);
-        } else {
-            System.out.println("Room " + roomNumber + " is not available or does not exist.");
-        }
-    }
-
-    public void cancelRoom(int reservationId) {
-        Reservation reservationToCancel = findReservation(reservationId);
-        if (reservationToCancel != null) {
-            reservationToCancel.getRoom().releaseRoom();
-            reservations.remove(reservationToCancel);
-            System.out.println("Reservation Cancelled: " + reservationId);
-        } else {
-            System.out.println("Reservation not found.");
-        }
-    }
-
-    private Room getRoomByNumber(int roomNumber) {
-        for (Room room : rooms) {
-            if (room.getRoomNumber() == roomNumber) {
-                return room;
+    public void bookRoom(int roomNumber, Customer customer) {
+        for (Room r : rooms) {
+            if (r.getRoomNumber() == roomNumber && !r.isOccupied()) {
+                r.setOccupied(true);
+                reservations.add(new Reservation(customer, r));
+                System.out.println("Room " + roomNumber + " booked successfully!");
+                return;
             }
         }
-        return null;
+        System.out.println("Room not available or invalid number!");
     }
 
-    private Reservation findReservation(int reservationId) {
-        for (Reservation reservation : reservations) {
-            if (reservation.getReservationId() == reservationId) {
-                return reservation;
-            }
+    public void applyDynamicPricing(String season) {
+        int totalRooms = rooms.size();
+        int booked = 0;
+
+        for (Room r : rooms) {
+            if (r.isOccupied()) booked++;
         }
-        return null;
+
+        double occupancyRate = totalRooms == 0 ? 0 : (double) booked / totalRooms;
+
+        for (Room r : rooms) {
+            r.updateDynamicPrice(occupancyRate, season);
+        }
+
+        System.out.println("\nDynamic pricing updated for season: " + season);
     }
 }

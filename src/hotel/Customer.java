@@ -1,20 +1,19 @@
 package hotel;
-import java.util.* ;
 
-class Customer {
-    private int customerId;
+public class Customer {
     private String name;
-    private String phone;
-    private String email;
+    private String contact;
 
-    public Customer(int customerId, String name, String phone, String email) {
-        this.customerId = customerId;
+    public Customer(String name, String contact) {
         this.name = name;
-        this.phone = phone;
-        this.email = email;
+        this.contact = contact;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getContact() {
+        return contact;
     }
 }

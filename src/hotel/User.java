@@ -1,21 +1,14 @@
 package hotel;
-import java.util.* ;  
 
-abstract class User {
-    protected String username;
+import java.util.Scanner;
+
+public abstract class User {
+    protected String name;
     protected String role;
 
-    public User(String username, String role) {
-        this.username = username;
+    public User(String name, String role) {
+        this.name = name;
         this.role = role;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public abstract void showMenu(HotelManagement hotel, Scanner sc, Customer customer);

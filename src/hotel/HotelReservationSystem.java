@@ -1,40 +1,46 @@
 package hotel;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class HotelReservationSystem {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         HotelManagement hotel = new HotelManagement();
+        Customer currentCustomer = new Customer("Guest", "0000000000");
 
-        // Pre-added rooms
-        hotel.addRoom(new Room(101, "Single", 1500));
-        hotel.addRoom(new Room(102, "Double", 2500));
-        hotel.addRoom(new Room(103, "Suite", 4000));
+        int choice;
+        do {
+            System.out.println("\n===== Hotel Reservation System =====");
+            System.out.println("1. Admin");
+            System.out.println("2. Manager");
+            System.out.println("3. Guest");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
 
-        System.out.println("Welcome to Hotel Reservation System");
-        System.out.print("Enter username: ");
-        String username = sc.nextLine();
+            User user = null;
+            switch (choice) {
+                case 1:
+                    user = new Admin("Admin");
+                    break;
+                case 2:
+                    user = new Manager("Manager");
+                    break;
+                case 3:
+                    user = new Guest("Guest");
+                    break;
+                case 4:
+                    System.out.println("Thank you for using the system!");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Invalid option! Try again.");
+            }
 
-        System.out.print("Select role (Guest / Manager / Admin): ");
-        String role = sc.nextLine();
+            if (user != null)
+                user.showMenu(hotel, sc, currentCustomer);
 
-        User user;
-        if (role.equalsIgnoreCase("Guest")) {
-            user = new Guest(username);
-        } else if (role.equalsIgnoreCase("Manager")) {
-            user = new Manager(username);
-        } else if (role.equalsIgnoreCase("Admin")) {
-            user = new Admin(username);
-        } else {
-            System.out.println("Invalid role! Defaulting to Guest.");
-            user = new Guest(username);
-        }
-
-        Customer customer = new Customer(1, username, "0000000000", username + "@example.com");
-        user.showMenu(hotel, sc, customer);
-
-        System.out.println("\nThank you for using the Hotel Reservation System!");
-        sc.close();
+        } while (choice != 4);
     }
 }

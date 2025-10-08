@@ -1,39 +1,43 @@
 package hotel;
-import java.util.* ;
-class Guest extends User {
-    public Guest(String username) {
-        super(username, "Guest");
+
+import java.util.Scanner;
+
+public class Guest extends User {
+
+    public Guest(String name) {
+        super(name, "Guest");
     }
 
     @Override
     public void showMenu(HotelManagement hotel, Scanner sc, Customer customer) {
-        while (true) {
-            System.out.println("\n--- Guest Menu ---");
+        int choice;
+        do {
+            System.out.println("\n===== Guest Menu =====");
             System.out.println("1. View Available Rooms");
-            System.out.println("2. Book Room");
-            System.out.println("3. Exit");
-            System.out.print("Enter choice: ");
-            int choice = sc.nextInt();
+            System.out.println("2. Book a Room");
+            System.out.println("3. Back to Main Menu");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
                     hotel.showAvailableRooms();
                     break;
+
                 case 2:
-                    System.out.print("Enter room number: ");
-                    int roomNumber = sc.nextInt();
-                    sc.nextLine();
-                    System.out.print("Enter check-in date (YYYY-MM-DD): ");
-                    String checkIn = sc.next();
-                    System.out.print("Enter check-out date (YYYY-MM-DD): ");
-                    String checkOut = sc.next();
-                    hotel.bookRoom(customer, roomNumber, checkIn, checkOut);
+                    System.out.print("Enter room number to book: ");
+                    int roomNo = sc.nextInt();
+                    hotel.bookRoom(roomNo, customer);
                     break;
+
                 case 3:
-                    return;
+                    System.out.println("Returning to Main Menu...");
+                    break;
+
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("Invalid choice! Try again.");
             }
-        }
+
+        } while (choice != 3);
     }
 }
