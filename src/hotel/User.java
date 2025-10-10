@@ -1,6 +1,6 @@
 package hotel;
 
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class User {
     protected String name;

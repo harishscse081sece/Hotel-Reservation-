@@ -19,6 +19,16 @@ public class Room {
         return roomNumber;
     }
 
+    // Missing methods:
+    
+    public String getType() {
+        return type;
+    }
+    
+    public double getBasePrice() {
+        return basePrice;
+    }
+
     public boolean isOccupied() {
         return occupied;
     }
