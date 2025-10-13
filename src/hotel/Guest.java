@@ -25,9 +25,15 @@ public class Guest extends User {
                     break;
 
                 case 2:
+                    sc.nextLine();
+                    System.out.print("Enter your name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Enter your contact number: ");
+                    String contact = sc.nextLine();
+                    Customer newCustomer = new Customer(name, contact);
                     System.out.print("Enter room number to book: ");
                     int roomNo = sc.nextInt();
-                    hotel.bookRoom(roomNo, customer);
+                    hotel.bookRoom(roomNo, newCustomer); 
                     break;
 
                 case 3:
