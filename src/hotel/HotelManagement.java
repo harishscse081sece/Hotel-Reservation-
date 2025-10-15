@@ -105,7 +105,7 @@ public class HotelManagement {
 
     public void showAllReservations() {
         try {
-            String query = "SELECT r.reservation_id, c.name, ro.room_number, ro.room_type " +
+            String query = "SELECT r.id, c.name, ro.room_number, ro.room_type " +
                            "FROM reservations r " +
                            "JOIN customers c ON r.customer_id = c.id " +
                            "JOIN rooms ro ON r.room_number = ro.room_number";
@@ -114,7 +114,7 @@ public class HotelManagement {
             System.out.println("\n----- All Reservations -----");
             while (rs.next()) {
                 System.out.printf("Reservation ID %d: Customer %s booked Room %d (%s)\n",
-                        rs.getInt("reservation_id"),
+                        rs.getInt("id"),
                         rs.getString("name"),
                         rs.getInt("room_number"),
                         rs.getString("room_type"));
